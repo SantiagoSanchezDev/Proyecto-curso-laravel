@@ -7,6 +7,18 @@
     <title>Dashboard</title>
 </head>
 <body>
+
+    {{-- Es lo mismo --}}
+
+    {{-- @if (session('status'))
+        {{ session('status') }}
+    @endif --}}
+
+    @session('key')
+        <h1>{{ $value }}</h1>
+    @endsession
+
+    {{-- ---- --}}
     
     @yield('contenido')
 

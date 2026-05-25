@@ -53,9 +53,17 @@ class PostController extends Controller
         // return dd($post->category->title);
 
         // $post = Post::get();
+        
+        session()->flush();     //destruye la variabl de sesion
+        // session(['key' => 'value']);    // crea la variable de sesion por un tiempo determinado
+        // session(['key2' => 'value2']);
+
+        // session()->forget('key');   // Elimina una varible de sesion, la indicada
+
         $post = Post::paginate(2); // obtiene 2 registros (paginacion)
 
         // dd($post);
+
         return view('dashboard/post/index', compact('post'));
 
     }
@@ -130,7 +138,7 @@ class PostController extends Controller
         // Es igual al Post:create con todos sus elementos declarados (ejemplo de arriba)
         // Post::create($request->all());
 
-        return to_route('post.index');
+        return to_route('post.index')->with('status', 'Post create');
     }
 
     /**
@@ -175,7 +183,7 @@ class PostController extends Controller
         
         $post->update($data);
 
-        return to_route('post.index');
+        return to_route('post.index')->with('status', 'Post edited');
     }
 
     /**
@@ -184,6 +192,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return to_route('post.index');
+        return to_route('post.index')->with('status', 'Post deleted');
     }
 }

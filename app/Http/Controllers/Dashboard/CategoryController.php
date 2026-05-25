@@ -13,7 +13,6 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::paginate(2); // obtiene 2 registros (paginacion)
-
         return view('dashboard/category/index', compact('category'));
     }
 
@@ -26,7 +25,7 @@ class CategoryController extends Controller
     public function store(StoreRequest $request)
     {
         Category::create($request->validated()); //Este metodo implementa más segurudad
-        return to_route('category.index');
+        return to_route('category.index')->with('status', 'Category created');
     }
 
     public function show(Category $category)
@@ -42,15 +41,12 @@ class CategoryController extends Controller
     public function update(PutRequest $request, Category $category)
     {   
         $category->update($request->validated());
-        return to_route('category.index');
+        return to_route('category.index')->with('status', 'Category edited');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Category $category)
     {
         $category->delete();
-        return to_route('category.index');
+        return to_route('category.index')->with('status', 'Category deleted');
     }
 }
