@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //CREATE
@@ -53,12 +50,21 @@ class PostController extends Controller
         // return dd($post->category->title);
 
         // $post = Post::get();
+
+
+
+
         
-        session()->flush();     //destruye la variabl de sesion
+        // session()->flush();     //destruye la variabl de sesion
         // session(['key' => 'value']);    // crea la variable de sesion por un tiempo determinado
         // session(['key2' => 'value2']);
 
+
+
         // session()->forget('key');   // Elimina una varible de sesion, la indicada
+
+        // $category_id = 1;
+        // dd(Post::where('id', '>=', 1)->where(function ($query) use ($category_id) {$query->where('category_id', $category_id)->orWhere('posted', 'yes');})->toSql());
 
         $post = Post::paginate(2); // obtiene 2 registros (paginacion)
 

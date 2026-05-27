@@ -3,24 +3,24 @@
 @section('contenido')
 
     <a href="{{ route('post.create')}}" target="blank">Create</a>
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <td>
+                <th>
                     ID
-                </td>
-                <td>
+                </th>
+                <th>
                     Title
-                </td>
-                <td>
+                </th>
+                <th>
                     Posted
-                </td>
-                <td>
+                </th>
+                <th>
                     Category
-                </td>
-                <td>
+                </th>
+                <th>
                     Options
-                </td>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -43,8 +43,7 @@
                         
                         <a href="{{ route('post.edit', $p) }}">Edit</a>
                         <a href="{{ route('post.show', $p) }}">Show</a>
-                    </td>
-                    <td>
+                    
                         <form action="{{ route('post.destroy', $p) }}" method="post">
                             @method('DELETE')
                             @csrf
